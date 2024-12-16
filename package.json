@@ -1,0 +1,17 @@
+{
+  "type": "commonjs",
+  "name": "noaa_solcalc",
+  "version": "1.0.0",
+  "description": "Calculation of next sunrise and sunset in regard to current date and time, Based on code of NOAA's sunrise calulator at https://gml.noaa.gov/grad/solcalc/sunrise.html.",
+  "main": "noaa_solcalc.js",
+  "scripts": {
+    "test": "solcalc_test.js"
+  },
+  "keywords": [
+    "sunrise",
+    "sunset"
+  ],
+  "author": "Lukas Zimmermann",
+  "license": "ISC",
+  "private": true
+}
