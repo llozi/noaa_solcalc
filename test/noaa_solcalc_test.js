@@ -113,8 +113,43 @@ console.log("UTC date: " + date.getUTCFullYear() + "-" + (date.getUTCMonth() + 1
 var sunrise_date = solcalc.findNextSunriseFromDate(date, latitude, longitude);
 console.log("Next Sunrise: " + sunrise_date.toISOString());
 
-
 var sunset_date =  solcalc.findNextSunsetFromDate(date, latitude, longitude);
 console.log("Next Sunset: " + sunset_date.toISOString());
+
+//*****************************************************************************
+// do some tests with the fundamental functions
+console.log("\r\nTesting fundamental functions");
+var julianday = solcalc.calcJD(date.getUTCFullYear(), date.getUTCMonth() + 1, date.getUTCDate());
+console.log("Julian Day: " + julianday);
+var dateOfJD = solcalc.calcDateFromJD(julianday);
+console.log("Date: " + dateOfJD.toISOString());
+
+var time = solcalc.calcSunriseUTC(julianday, latitude, longitude);
+if (! isNaN(time)) {
+  // time is in minutes
+  var tm = time;
+  var hrs = Math.floor(tm / 60);
+  tm = tm - hrs * 60;
+  var mins = Math.floor(tm);
+  tm = tm - mins;
+  var secs = Math.floor(tm * 60);
+  console.log("Sunrise time [min]: " + time + " (" + hrs + "h " + mins + "' " + secs + "\")");
+} else {
+  console.log("No sunrise this day");
+}
+
+time = solcalc.calcSunsetUTC(julianday, latitude, longitude);
+if (! isNaN(time)) {
+  // time is in minutes
+  tm = time;
+  hrs = Math.floor(tm / 60);
+  tm = tm - hrs * 60;
+  mins = Math.floor(tm);
+  tm = tm - mins;
+  secs = Math.floor(tm * 60);
+  console.log("Sunset time [min]: " + time + " (" + hrs + "h " + mins + "' " + secs + "\")");
+} else {
+  console.log("No sunset this day");
+}
 
 
