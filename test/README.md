@@ -2,8 +2,8 @@
 `noaa_solcalc_test.js` is a node based program to test 
 the noaa_solcalc module which calculates next sunrise or sunset given a date/time.  
 
-The `noaa_solcalc_test.js` program uses minimist module for command line option parsing
-[https://github.com/minimistjs/minimist](https://github.com/minimistjs/minimist).
+The `noaa_solcalc_test.js` program uses [minimist module](https://github.com/minimistjs/minimist)
+for command line option parsing.
 
 #### The program accepts the following command line options:
 ```
