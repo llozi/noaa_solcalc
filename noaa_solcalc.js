@@ -24,6 +24,8 @@ exports.findNextSunset = findNextSunset;
 exports.findNextSunsetFromDate = findNextSunsetFromDate;
 exports.calcDateFromJD = calcDateFromJD;
 exports.calcJD = calcJD;
+exports.calcSunriseUTC = calcSunriseUTC;
+exports.calcSunsetUTC = calcSunsetUTC;
 
 //***********************************************************************/
 //* Name:    findNextSunrise
@@ -67,7 +69,7 @@ function findNextSunriseFromDate(date, latitude, longitude) {
                              date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds()));
   var tday = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
   //console.log("today as UTC: " + tday.toUTCString());
-  var epoch = (dt.getTime() - tday.getTime()) / 1000;
+  var epoch = Math.floor((dt.getTime() - tday.getTime()) / 1000);
 
   var time = calcSunriseUTC(julianday, latitude, longitude);
   while (!isNumber(time)) {
@@ -76,7 +78,7 @@ function findNextSunriseFromDate(date, latitude, longitude) {
     //console.log("no sunrise this day, looking to " + julianday + ".");
     time = calcSunriseUTC(julianday, latitude, longitude);
   }
-  if (time * 60 <= epoch) {
+  if (Math.floor(time * 60) <= epoch) {
     // Scanning again if the given day has a sunrise but it is already in the past.
     //console.log("this day's sunrise is in the past, looking for following day.");
     julianday += 1.0;
@@ -137,7 +139,7 @@ function findNextSunsetFromDate(date, latitude, longitude) {
                              date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds()));
   var tday = new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate()));
   //console.log("today as UTC: " + tday.toUTCString());
-  var epoch = (dt.getTime() - tday.getTime()) / 1000;
+  var epoch = Math.floor((dt.getTime() - tday.getTime()) / 1000);
 
   var time = calcSunsetUTC(julianday, latitude, longitude);
   while (!isNumber(time)) {
@@ -146,7 +148,7 @@ function findNextSunsetFromDate(date, latitude, longitude) {
     //console.log("no sunset this day, looking to " + julianday + ".");
     time = calcSunsetUTC(julianday, latitude, longitude);
   }
-  if (time * 60 <= epoch) {
+  if (Math.floor(time * 60) <= epoch) {
     // Scanning again if given day has a sunset but it is already in the past.
     //console.log("this day's sunset is in the past, looking for following day.");
     julianday += 1.0;
