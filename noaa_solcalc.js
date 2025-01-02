@@ -214,7 +214,7 @@ function calcSunriseUTC(JD, latitude, longitude) {
   //     Julian day
 
   var noonmin = calcSolNoonUTC(t, longitude);
-  var tnoon = calcTimeJulianCent (JD+noonmin/1440.0);
+  var tnoon = calcTimeJulianCent(JD + noonmin / 1440.0);
 
   // *** First pass to approximate sunrise (using solar noon)
 
@@ -230,7 +230,7 @@ function calcSunriseUTC(JD, latitude, longitude) {
 
   // *** Second pass includes fractional jday in gamma calc
 
-  var newt = calcTimeJulianCent(calcJDFromJulianCent(t) + timeUTC/1440.0); 
+  var newt = calcTimeJulianCent(calcJDFromJulianCent(t) + timeUTC / 1440.0); 
   eqTime = calcEquationOfTime(newt);
   solarDec = calcSunDeclination(newt);
   hourAngle = calcHourAngleSunrise(latitude, solarDec);
