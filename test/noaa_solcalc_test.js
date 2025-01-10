@@ -35,7 +35,7 @@ function option_unknown() {
 //***********************************************************************/
 
 var minimist = require('minimist');
-var solcalc = require('noaa_solcalc');
+var solcalc = require('../../noaa_solcalc');
 
 var args = minimist(process.argv.slice(2), {
   string:  ['date', 'long', 'lat' ],   // --date "YYYY-MM-DD", --long "7.5", --lat "47.5"
